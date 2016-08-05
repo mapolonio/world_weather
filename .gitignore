@@ -5,4 +5,4 @@ node_modules
 npm-debug.log
 
 #transpiled code
-public/javascripts/dist/
+public/javascripts/*

@@ -6,7 +6,7 @@ const buffer = require('vinyl-buffer');
 
 gulp.task('default', function() {
   let b = browserify({
-    entries: './public/javascripts/app.js',
+    entries: './src/app.js',
     debug: true
   })
   .transform(babelify, {
@@ -17,5 +17,5 @@ gulp.task('default', function() {
   return b.bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(gulp.dest('public/javascripts/dist'));
+    .pipe(gulp.dest('public/javascripts'));
 });
