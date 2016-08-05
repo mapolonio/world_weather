@@ -1,6 +1,9 @@
-import mobx, {observable, computed} from 'mobx';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ObservableTodoStore from './models/todoStore';
+import TodoList from './components/todoList';
 
-class City {
+/*class City {
   @observable temperature;
   @observable time;
 
@@ -28,9 +31,24 @@ class City {
   }
 }
 
-let a = new City();
+let a = new City();*/
 
-setInterval( () => {
+/*setInterval( () => {
   a.update();
   //a.report();
-}, 1000);
+}, 1000);*/
+
+
+
+
+const observableTodoStore = new ObservableTodoStore();
+
+ReactDOM.render(
+  <TodoList store={ observableTodoStore } />,
+  document.getElementById('reactjs-app')
+);
+
+const store = observableTodoStore;
+store.todos[0].completed = !store.todos[0].completed;
+store.todos[1].task = 'Random todo ' + Math.random();
+store.todos.push({ task: 'Find a fine cheese', completed: true });

@@ -10,7 +10,7 @@ gulp.task('default', function() {
     debug: true
   })
   .transform(babelify, {
-    presets: ['es2015'],
+    presets: ['es2015', 'react'],
     plugins: ['transform-decorators-legacy', 'transform-class-properties']
   });
 

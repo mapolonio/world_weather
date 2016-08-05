@@ -21,6 +21,12 @@
     "space-before-blocks": 2,
     "quotes": [2, "single"],
     "space-infix-ops": 2,
-    "curly": ["error", "all"]
-  }
+    "curly": ["error", "all"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-no-undef": "error"
+  },
+  "plugins": [
+    "react"
+  ]
 }
