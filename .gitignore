@@ -3,3 +3,6 @@ node_modules
 
 #debug
 npm-debug.log
+
+#transpiled code
+public/javascripts/dist/

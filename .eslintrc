@@ -11,6 +11,7 @@
       "jsx": true
     }
   },
+  "parser": "babel-eslint",
   "rules": {
     "max-len": [2, 140, 4],
     "keyword-spacing": 2,
