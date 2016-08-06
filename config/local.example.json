@@ -1,0 +1,6 @@
+{
+  "dbconnection": {
+    "host": "redis host",
+    "port": 1234
+  }
+}
