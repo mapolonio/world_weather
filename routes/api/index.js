@@ -5,6 +5,7 @@ const apiKey = config.get('forecast').apikey;
 const ForecastIO = require('forecast-io');
 const forecast = new ForecastIO(apiKey);
 const moment = require('moment-timezone');
+const City = require('../../models/city');
 
 /* TODO: reemplazar diccionario por consulta a redis */
 const cities = {
@@ -37,31 +38,32 @@ const cities = {
 router.get('/update/:city', function(req, res) {
   let lat;
   let lng;
-  let city = cities[req.params.city];
-  try {
-    lat = city.lat;
-    lng = city.lng;
-  } catch (error) {
-    console.log(error);
-    res.status(400);
-    return res.send('Bad request');
-  }
-  res.setHeader('Content-Type', 'application/json');
-  forecast
-    .latitude(lat)
-    .longitude(lng)
-    .units('si')
-    .exclude('minutely,hourly,daily')
-    .get()
-    .then(response => {
-      let data = JSON.parse(response);
-      res.send({
-        temperature: data.currently.temperature,
-        time: moment.unix(data.currently.time).tz(data.timezone).format('H:mm:ss')
-      });
+  City.getCity(req.params.city)
+    .then(city => {
+      if (!city) {
+        throw new Error('City not found');
+      }
+      lat = city.lat;
+      lng = city.lng;
+      res.setHeader('Content-Type', 'application/json');
+      forecast
+        .latitude(lat)
+        .longitude(lng)
+        .units('si')
+        .exclude('minutely,hourly,daily')
+        .get()
+        .then(response => {
+          let data = JSON.parse(response);
+          res.send({
+            temperature: data.currently.temperature,
+            time: moment.unix(data.currently.time).tz(data.timezone).format('H:mm:ss')
+          });
+        });
     })
     .catch(err => {
       console.log(err);
+      res.status(400);
+      return res.send('Bad request');
     });
 });
 
