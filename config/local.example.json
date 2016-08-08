@@ -3,7 +3,7 @@
     "host": "redis host",
     "port": 1234
   },
-  "forecast.io": {
-    "apikey": "your key here"
+  "forecast": {
+    "apikey": "forecast.io api key"
   }
 }
