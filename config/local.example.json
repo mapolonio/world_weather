@@ -2,5 +2,8 @@
   "dbconnection": {
     "host": "redis host",
     "port": 1234
+  },
+  "forecast.io": {
+    "apikey": "your key here"
   }
 }
