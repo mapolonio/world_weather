@@ -1,8 +1,42 @@
+html, body {
+  height: 100%;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
 }
 
 a {
   color: #00B7FF;
+}
+
+#reactjs-app {
+  height: 100%;
+  display: table;
+  margin: auto;"
+}
+
+div.citySelectorContainer {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+div.city {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+div.city > h1{
+  font-size: 130px;
+  margin: 0px;
+}
+
+div.city > h2{
+  font-size: 50px;
+}
+
+div.city > h2{
+  font-size: 50px;
 }
