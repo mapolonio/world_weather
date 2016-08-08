@@ -6,6 +6,7 @@ const ForecastIO = require('forecast-io');
 const forecast = new ForecastIO(apiKey);
 const moment = require('moment-timezone');
 const City = require('../../models/city');
+const ErrorModel = require('../../models/error');
 const APIError = require('../../lib/APIError');
 
 function dontGiveUp(f) {
@@ -13,7 +14,7 @@ function dontGiveUp(f) {
     return f();
   } catch (err) {
     if (err instanceof APIError) {
-      console.log('Save error to redis');
+      ErrorModel.save(err.message);
       return dontGiveUp(f);
     }
     throw err;
