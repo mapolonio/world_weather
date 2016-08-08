@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ObservableTodoStore from './models/todoStore';
 import TodoList from './components/todoList';
+import CitySelector from './components/citySelector';
+import CityList from './models/cityList';
 
 /*class City {
   @observable temperature;
@@ -41,7 +43,7 @@ let a = new City();*/
 
 
 
-const observableTodoStore = new ObservableTodoStore();
+/*const observableTodoStore = new ObservableTodoStore();
 
 ReactDOM.render(
   <TodoList store={ observableTodoStore } />,
@@ -51,4 +53,15 @@ ReactDOM.render(
 const store = observableTodoStore;
 store.todos[0].completed = !store.todos[0].completed;
 store.todos[1].task = 'Random todo ' + Math.random();
-store.todos.push({ task: 'Find a fine cheese', completed: true });
+store.todos.push({ task: 'Find a fine cheese', completed: true });*/
+
+let cityList = new CityList();
+
+ReactDOM.render(
+  <CitySelector store= {cityList} />,
+  document.getElementById('reactjs-app')
+);
+
+cityList.addCity('CL', 'Santiago');
+cityList.addCity('CLa','crap');
+cityList.select('CLa');
