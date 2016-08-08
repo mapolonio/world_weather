@@ -6,6 +6,7 @@ const cities = require('../config/cities');
   Model:
 
   cities:countryCode {
+    name: string,
     lat: number,
     lng: number
   }
@@ -18,7 +19,7 @@ client.on('error', err => {
 module.exports = {
   initialize () {
     return bluebird.map(cities, city => {
-      return  client.hmsetAsync(`cities:${city.code}`, 'lat', city.lat, 'lng', city.lng);
+      return  client.hmsetAsync(`cities:${city.code}`, 'name', city.name, 'lat', city.lat, 'lng', city.lng);
     });
   },
 

@@ -36,7 +36,7 @@ function forcedFailForecast (lat, lng) {
 
 }
 
-router.get('/update/:city', function(req, res) {
+router.get('/update/:city', (req, res) => {
   let lat;
   let lng;
   City.getCity(req.params.city)
@@ -52,7 +52,7 @@ router.get('/update/:city', function(req, res) {
           let data = JSON.parse(result);
           res.send({
             temperature: data.currently.temperature,
-            time: moment.unix(data.currently.time).tz(data.timezone).format('H:mm:ss')
+            time: moment.unix(data.currently.time).tz(data.timezone).format('H:mm')
           });
         });
 
@@ -62,6 +62,11 @@ router.get('/update/:city', function(req, res) {
       res.status(400);
       return res.send('Bad request');
     });
+});
+
+router.get('/config', (req, res) => {
+  City.getAll()
+    .then(result => res.send(result));
 });
 
 module.exports = router;
